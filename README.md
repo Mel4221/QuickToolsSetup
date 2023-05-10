@@ -18,3 +18,5 @@ it also has settings manager inside it to allow it to be editted as well and jus
 ![step9](https://github.com/Mel4221/QuickToolsSetup/assets/87794877/175a1546-56ce-4085-b144-3e5a1c282119)
 ![step10](https://github.com/Mel4221/QuickToolsSetup/assets/87794877/6c11d475-18d4-4bfc-bd52-605f17947b91)
 ![done](https://github.com/Mel4221/QuickToolsSetup/assets/87794877/eeffbe27-907c-4d9d-9c5b-08c74796aafc)
+
+# Setup Guide

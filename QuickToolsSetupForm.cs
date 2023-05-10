@@ -36,6 +36,7 @@ namespace QuickToolsSetup
             Application.Exit();
         }
 
+        
         private void InstallBtn_Click(object sender, EventArgs e)
         {
             if (this.CopyRightsAckBtn.Checked != true)
@@ -43,11 +44,24 @@ namespace QuickToolsSetup
                 MessageBox.Show("Please Accept The Licence", "Info");
                 return;
             }
+            if (this.InstalationPath.Text == "")
+            {
+                this.InstallLocationOpen.Visible = true;
+                this.InstalationPath.Visible = true;
+                this.InstallBtn.Text = "Select";
+                this.InstalationPath.Text = System.IO.Directory.GetCurrentDirectory();
+                return;
+            }
             else
             {
+              
                 //hidding copyright 
                 CopyRightsAckBtn.Visible = false;
-                LinkToLicenceBtn.Visible = false; 
+                LinkToLicenceBtn.Visible = false;
+                InstalationPath.Visible = false;
+                InstallBtn.Visible = false;
+                InstallLocationOpen.Visible = false; 
+
                 //showing text status 
                 this.InstalationTextStatus.Visible = true; 
                 //showing the status var 
@@ -107,6 +121,15 @@ namespace QuickToolsSetup
             SettingsWindow settings = new SettingsWindow();
             settings.Show();
             this.Hide();
+        }
+
+        private void InstallLocationOpen_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog folder = new FolderBrowserDialog();
+            if(folder.ShowDialog() == DialogResult.OK)
+            {
+                this.InstalationPath.Text = folder.SelectedPath; 
+            }
         }
     }
 }

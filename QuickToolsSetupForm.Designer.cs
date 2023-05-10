@@ -39,6 +39,8 @@
             this.CloseInstallationBtn = new System.Windows.Forms.Button();
             this.InstalationWorker = new System.ComponentModel.BackgroundWorker();
             this.InstalationTextStatus = new System.Windows.Forms.Label();
+            this.InstalationPath = new System.Windows.Forms.TextBox();
+            this.InstallLocationOpen = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.QuickToolsPictures)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,9 +56,9 @@
             // 
             // InstallerProgressBar
             // 
-            this.InstallerProgressBar.Location = new System.Drawing.Point(1, 233);
+            this.InstallerProgressBar.Location = new System.Drawing.Point(1, 244);
             this.InstallerProgressBar.Name = "InstallerProgressBar";
-            this.InstallerProgressBar.Size = new System.Drawing.Size(548, 26);
+            this.InstallerProgressBar.Size = new System.Drawing.Size(553, 26);
             this.InstallerProgressBar.TabIndex = 1;
             this.InstallerProgressBar.Visible = false;
             // 
@@ -73,7 +75,7 @@
             // CopyRightsAckBtn
             // 
             this.CopyRightsAckBtn.AutoSize = true;
-            this.CopyRightsAckBtn.Location = new System.Drawing.Point(16, 210);
+            this.CopyRightsAckBtn.Location = new System.Drawing.Point(16, 248);
             this.CopyRightsAckBtn.Name = "CopyRightsAckBtn";
             this.CopyRightsAckBtn.Size = new System.Drawing.Size(137, 17);
             this.CopyRightsAckBtn.TabIndex = 3;
@@ -86,7 +88,7 @@
             this.LinkToLicenceBtn.AccessibleRole = System.Windows.Forms.AccessibleRole.Link;
             this.LinkToLicenceBtn.AutoSize = true;
             this.LinkToLicenceBtn.LinkColor = System.Drawing.Color.Black;
-            this.LinkToLicenceBtn.Location = new System.Drawing.Point(149, 211);
+            this.LinkToLicenceBtn.Location = new System.Drawing.Point(149, 249);
             this.LinkToLicenceBtn.Name = "LinkToLicenceBtn";
             this.LinkToLicenceBtn.Size = new System.Drawing.Size(50, 13);
             this.LinkToLicenceBtn.TabIndex = 4;
@@ -98,7 +100,7 @@
             // 
             this.InstallBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.InstallBtn.ForeColor = System.Drawing.Color.Black;
-            this.InstallBtn.Location = new System.Drawing.Point(469, 201);
+            this.InstallBtn.Location = new System.Drawing.Point(480, 241);
             this.InstallBtn.Name = "InstallBtn";
             this.InstallBtn.Size = new System.Drawing.Size(70, 26);
             this.InstallBtn.TabIndex = 5;
@@ -110,7 +112,7 @@
             // 
             this.QuickToolsPictures.Image = ((System.Drawing.Image)(resources.GetObject("QuickToolsPictures.Image")));
             this.QuickToolsPictures.InitialImage = ((System.Drawing.Image)(resources.GetObject("QuickToolsPictures.InitialImage")));
-            this.QuickToolsPictures.Location = new System.Drawing.Point(351, 24);
+            this.QuickToolsPictures.Location = new System.Drawing.Point(336, 33);
             this.QuickToolsPictures.Name = "QuickToolsPictures";
             this.QuickToolsPictures.Size = new System.Drawing.Size(137, 140);
             this.QuickToolsPictures.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -124,7 +126,7 @@
             this.CloseInstallationBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CloseInstallationBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CloseInstallationBtn.ForeColor = System.Drawing.Color.White;
-            this.CloseInstallationBtn.Location = new System.Drawing.Point(518, 0);
+            this.CloseInstallationBtn.Location = new System.Drawing.Point(523, 9);
             this.CloseInstallationBtn.Name = "CloseInstallationBtn";
             this.CloseInstallationBtn.Size = new System.Drawing.Size(31, 23);
             this.CloseInstallationBtn.TabIndex = 7;
@@ -147,19 +149,43 @@
             this.InstalationTextStatus.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.InstalationTextStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.InstalationTextStatus.ForeColor = System.Drawing.Color.White;
-            this.InstalationTextStatus.Location = new System.Drawing.Point(13, 214);
+            this.InstalationTextStatus.Location = new System.Drawing.Point(2, 225);
             this.InstalationTextStatus.Name = "InstalationTextStatus";
             this.InstalationTextStatus.Size = new System.Drawing.Size(26, 16);
             this.InstalationTextStatus.TabIndex = 8;
             this.InstalationTextStatus.Text = "0%";
             this.InstalationTextStatus.Visible = false;
             // 
+            // InstalationPath
+            // 
+            this.InstalationPath.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.InstalationPath.Location = new System.Drawing.Point(1, 244);
+            this.InstalationPath.Name = "InstalationPath";
+            this.InstalationPath.Size = new System.Drawing.Size(386, 21);
+            this.InstalationPath.TabIndex = 9;
+            this.InstalationPath.Visible = false;
+            // 
+            // InstallLocationOpen
+            // 
+            this.InstallLocationOpen.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.InstallLocationOpen.ForeColor = System.Drawing.Color.Black;
+            this.InstallLocationOpen.Location = new System.Drawing.Point(399, 241);
+            this.InstallLocationOpen.Name = "InstallLocationOpen";
+            this.InstallLocationOpen.Size = new System.Drawing.Size(70, 26);
+            this.InstallLocationOpen.TabIndex = 10;
+            this.InstallLocationOpen.Text = "Change";
+            this.InstallLocationOpen.UseVisualStyleBackColor = true;
+            this.InstallLocationOpen.Visible = false;
+            this.InstallLocationOpen.Click += new System.EventHandler(this.InstallLocationOpen_Click);
+            // 
             // QuickToolsSetupForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(60)))), ((int)(((byte)(80)))));
-            this.ClientSize = new System.Drawing.Size(551, 260);
+            this.ClientSize = new System.Drawing.Size(556, 270);
+            this.Controls.Add(this.InstallLocationOpen);
+            this.Controls.Add(this.InstalationPath);
             this.Controls.Add(this.InstalationTextStatus);
             this.Controls.Add(this.CloseInstallationBtn);
             this.Controls.Add(this.QuickToolsPictures);
@@ -194,6 +220,8 @@
         private System.Windows.Forms.Button CloseInstallationBtn;
         private System.ComponentModel.BackgroundWorker InstalationWorker;
         private System.Windows.Forms.Label InstalationTextStatus;
+        private System.Windows.Forms.TextBox InstalationPath;
+        private System.Windows.Forms.Button InstallLocationOpen;
     }
 }
 

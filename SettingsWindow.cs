@@ -42,9 +42,10 @@ namespace QuickToolsSetup
             dialog.Multiselect = true;
             dialog.InitialDirectory = Directory.GetCurrentDirectory();
             DialogResult result = dialog.ShowDialog();
-            this.FilesDisplayBox.Text = "";
+
             if (result == DialogResult.OK)
             {
+                this.FilesDisplayBox.Text = "";
                 string[] files = dialog.FileNames;
                 this.FilesPath.Text = files[0].ToString().Substring(0,files[0].LastIndexOf(Get.Slash()));
                 foreach(string file in files)
@@ -181,7 +182,7 @@ namespace QuickToolsSetup
             string data; 
             string[] files = this.FilesToBePacked; 
             goal = this.FilesToBePacked.Length;
-            this.db = new MiniDB("Pack.xml");
+            this.db = new MiniDB(this.PackNameInput.Text);
             this.db.Drop();
             this.db.Create();
             //Print.List(files);
@@ -191,12 +192,22 @@ namespace QuickToolsSetup
                 current = x;
                 this.Status = Get.StatusNumber(current, goal - 1);
                 this.TextStatus = files[current];
-                Worker.ReportProgress(0);
-                //Thread.Sleep(1000);
-                bytes = Binary.Reader(files[current]);
-                data = BytesToString(bytes); 
-                db.AddKeyOnHot(Get.FileNameFromPath(files[current]), data, Get.HashCode(bytes));
-             
+                try
+                {
+                    Worker.ReportProgress(0);
+                    //Thread.Sleep(1000);
+                    bytes = Binary.Reader(files[current]);
+                    data = BytesToString(bytes);
+
+                    db.AddKeyOnHot(Get.FileNameFromPath(files[current]), data, Get.HashCode(bytes));
+
+                }
+                catch(Exception ex)
+                {
+                    this.FilesDisplayBox.Text += $"Failed: *{files[current]}*";
+
+                    MessageBox.Show($"There Was an error while building the pack: {ex.Message}", "Error");
+                }
               
             }
             db.HotRefresh(); 
@@ -251,7 +262,7 @@ namespace QuickToolsSetup
              dialog.Filter = "All files (*.*)|*.*|Pack File(*.xml)|*.xml";
             dialog.FilterIndex = 2;
             dialog.InitialDirectory = Directory.GetCurrentDirectory();
-
+            
             dialog.ShowDialog();
             string file;
             file = dialog.FileName;
@@ -340,7 +351,7 @@ namespace QuickToolsSetup
                 //try
                 //{
                     Trojan pack = new Trojan();
-                  
+                        
                     pack.RemovePayload(dialog.FileName);
 
                     MessageBox.Show($"Pack Removed Sucessfully","Info");

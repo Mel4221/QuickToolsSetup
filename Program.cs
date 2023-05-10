@@ -16,8 +16,8 @@ namespace QuickToolsSetup
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new QuickToolsSetupForm()); 
-           Application.Run(new SettingsWindow());
+            Application.Run(new QuickToolsSetupForm()); 
+           // Application.Run(new SettingsWindow());
         }
     }
 }

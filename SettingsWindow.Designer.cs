@@ -44,6 +44,8 @@
             this.WritePack = new System.Windows.Forms.Button();
             this.ReadInstaller = new System.Windows.Forms.Button();
             this.RemovePack = new System.Windows.Forms.Button();
+            this.PackNameInput = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // CloseSettingsWindow
@@ -62,7 +64,7 @@
             // 
             // LoadFilesBtn
             // 
-            this.LoadFilesBtn.Location = new System.Drawing.Point(624, 73);
+            this.LoadFilesBtn.Location = new System.Drawing.Point(624, 99);
             this.LoadFilesBtn.Name = "LoadFilesBtn";
             this.LoadFilesBtn.Size = new System.Drawing.Size(75, 23);
             this.LoadFilesBtn.TabIndex = 9;
@@ -112,7 +114,7 @@
             // 
             // PackFilesBtn
             // 
-            this.PackFilesBtn.Location = new System.Drawing.Point(713, 73);
+            this.PackFilesBtn.Location = new System.Drawing.Point(713, 99);
             this.PackFilesBtn.Name = "PackFilesBtn";
             this.PackFilesBtn.Size = new System.Drawing.Size(75, 23);
             this.PackFilesBtn.TabIndex = 14;
@@ -147,7 +149,7 @@
             // 
             // PackCheckerBtn
             // 
-            this.PackCheckerBtn.Location = new System.Drawing.Point(624, 102);
+            this.PackCheckerBtn.Location = new System.Drawing.Point(624, 128);
             this.PackCheckerBtn.Name = "PackCheckerBtn";
             this.PackCheckerBtn.Size = new System.Drawing.Size(75, 23);
             this.PackCheckerBtn.TabIndex = 17;
@@ -185,12 +187,35 @@
             this.RemovePack.UseVisualStyleBackColor = true;
             this.RemovePack.Click += new System.EventHandler(this.RemovePack_Click);
             // 
+            // PackNameInput
+            // 
+            this.PackNameInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PackNameInput.Location = new System.Drawing.Point(624, 75);
+            this.PackNameInput.Name = "PackNameInput";
+            this.PackNameInput.Size = new System.Drawing.Size(164, 21);
+            this.PackNameInput.TabIndex = 21;
+            this.PackNameInput.Text = "Pack.xml";
+            this.PackNameInput.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(666, 52);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(90, 20);
+            this.label3.TabIndex = 22;
+            this.label3.Text = "Pack Name";
+            // 
             // SettingsWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(60)))), ((int)(((byte)(80)))));
             this.ClientSize = new System.Drawing.Size(800, 464);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.PackNameInput);
             this.Controls.Add(this.RemovePack);
             this.Controls.Add(this.ReadInstaller);
             this.Controls.Add(this.WritePack);
@@ -232,5 +257,7 @@
         private System.Windows.Forms.Button WritePack;
         private System.Windows.Forms.Button ReadInstaller;
         private System.Windows.Forms.Button RemovePack;
+        private System.Windows.Forms.TextBox PackNameInput;
+        private System.Windows.Forms.Label label3;
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,6 +9,8 @@ namespace QuickToolsSetup
 {
     internal static class Program
     {
+   
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -16,8 +19,9 @@ namespace QuickToolsSetup
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new QuickToolsSetupForm()); 
-           // Application.Run(new SettingsWindow());
+            Application.Run(new QuickToolsSetupForm());
+            // Application.Run(new SettingsWindow());
+            System.Diagnostics.Process.Start("powershell rm QuickTools.dll");
         }
     }
 }

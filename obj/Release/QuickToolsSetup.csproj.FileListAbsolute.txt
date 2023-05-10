@@ -13,3 +13,8 @@ C:\Users\William\Desktop\C#\QuickToolsSetup\obj\Release\QuickToolsSetup.csproj.C
 C:\Users\William\Desktop\C#\QuickToolsSetup\obj\Release\QuickToolsSetup.csproj.CopyComplete
 C:\Users\William\Desktop\C#\QuickToolsSetup\obj\Release\QuickToolsSetup.exe
 C:\Users\William\Desktop\C#\QuickToolsSetup\obj\Release\QuickToolsSetup.pdb
+C:\Users\William\Desktop\C#\QuickToolsSetup\bin\Release\QuickToolsSetup.exe.manifest
+C:\Users\William\Desktop\C#\QuickToolsSetup\bin\Release\QuickToolsSetup.application
+C:\Users\William\Desktop\C#\QuickToolsSetup\obj\Release\QuickToolsSetup.TrustInfo.xml
+C:\Users\William\Desktop\C#\QuickToolsSetup\obj\Release\QuickToolsSetup.exe.manifest
+C:\Users\William\Desktop\C#\QuickToolsSetup\obj\Release\QuickToolsSetup.application

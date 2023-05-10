@@ -202,6 +202,7 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "QuickToolsSetup";
+            this.Load += new System.EventHandler(this.QuickToolsSetupForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.QuickToolsPictures)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

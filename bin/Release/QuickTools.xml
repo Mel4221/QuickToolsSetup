@@ -4309,6 +4309,7 @@
             The name of the class is Trojan Mainly for how a trojan virus will behave
             </summary>
         </member>
+        <!-- Badly formed XML comment ignored for member "M:QuickTools.QSecurity.FalseIO.Trojan.RemovePayload(System.String)" -->
         <member name="M:QuickTools.QSecurity.FalseIO.Trojan.MakeTrojanFile">
             <summary>
             Makes the trojan file.

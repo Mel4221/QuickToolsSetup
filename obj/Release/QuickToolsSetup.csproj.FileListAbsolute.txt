@@ -1,0 +1,15 @@
+C:\Users\William\Desktop\C#\QuickToolsSetup\bin\Release\QuickToolsSetup.exe.config
+C:\Users\William\Desktop\C#\QuickToolsSetup\bin\Release\QuickToolsSetup.exe
+C:\Users\William\Desktop\C#\QuickToolsSetup\bin\Release\QuickToolsSetup.pdb
+C:\Users\William\Desktop\C#\QuickToolsSetup\bin\Release\QuickTools.dll
+C:\Users\William\Desktop\C#\QuickToolsSetup\bin\Release\QuickTools.xml
+C:\Users\William\Desktop\C#\QuickToolsSetup\obj\Release\QuickToolsSetup.csproj.AssemblyReference.cache
+C:\Users\William\Desktop\C#\QuickToolsSetup\obj\Release\QuickToolsSetup.csproj.SuggestedBindingRedirects.cache
+C:\Users\William\Desktop\C#\QuickToolsSetup\obj\Release\QuickToolsSetup.QuickToolsSetupForm.resources
+C:\Users\William\Desktop\C#\QuickToolsSetup\obj\Release\QuickToolsSetup.Properties.Resources.resources
+C:\Users\William\Desktop\C#\QuickToolsSetup\obj\Release\QuickToolsSetup.SettingsWindow.resources
+C:\Users\William\Desktop\C#\QuickToolsSetup\obj\Release\QuickToolsSetup.csproj.GenerateResource.cache
+C:\Users\William\Desktop\C#\QuickToolsSetup\obj\Release\QuickToolsSetup.csproj.CoreCompileInputs.cache
+C:\Users\William\Desktop\C#\QuickToolsSetup\obj\Release\QuickToolsSetup.csproj.CopyComplete
+C:\Users\William\Desktop\C#\QuickToolsSetup\obj\Release\QuickToolsSetup.exe
+C:\Users\William\Desktop\C#\QuickToolsSetup\obj\Release\QuickToolsSetup.pdb

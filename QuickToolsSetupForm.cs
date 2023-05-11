@@ -62,7 +62,7 @@ namespace QuickToolsSetup
             {
                 this.InstallLocationOpen.Visible = true;
                 this.InstalationPath.Visible = true;
-                this.InstallBtn.Text = "Select";
+                this.InstallBtn.Text = "Select Here";
                 this.InstalationPath.Text = System.IO.Directory.GetCurrentDirectory();
                 return;
             }
@@ -90,10 +90,12 @@ namespace QuickToolsSetup
 
 
         public int Status;
-        public string TextStatus; 
+        public string TextStatus;
+        private SettingsWindow _SettingsWindow; 
         private void InstalationWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-            SettingsWindow.PullPackOut(this.InstalationWorker);
+            this._SettingsWindow = new SettingsWindow();
+            this._SettingsWindow.PullPackOut(this.InstalationWorker);
            // MessageBox.Show(SettingsWindow.PackInfo);
 
             /*
@@ -114,14 +116,14 @@ namespace QuickToolsSetup
         {
             if(this.InstallerProgressBar.Value != 100)
             {
-                this.InstallerProgressBar.Value = int.Parse(SettingsWindow.PullingStatus.ToString());
-                this.InstalationTextStatus.Text = $"Installing: {SettingsWindow.PullingTextStatus}";
+                this.InstallerProgressBar.Value = int.Parse(this._SettingsWindow.PullingStatus.ToString());
+                this.InstalationTextStatus.Text = $"{this._SettingsWindow.PullingTextStatus}";
             }
         }
 
         private void InstalationWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            DialogResult result =   MessageBox.Show($"Installation Completed Sucessfully \n {SettingsWindow.PullingTextStatus}","Info");
+            DialogResult result =   MessageBox.Show($"Installation Completed Sucessfully \n {this._SettingsWindow.PullingTextStatus}","Info");
             if(result == DialogResult.OK)
             {
               //  Application.Exit();
@@ -157,7 +159,9 @@ namespace QuickToolsSetup
 
         private void QuickToolsSetupForm_Load(object sender, EventArgs e)
         {
-
+            //string file = "_Pack.xml";
+            //string str = file.Substring(file.IndexOf("_")+1,file.Length-1);
+            //MessageBox.Show($"{str}");
         }
         public static byte[] StringToBytesArray(string rowString)
         {

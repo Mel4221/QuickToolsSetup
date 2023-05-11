@@ -50,6 +50,7 @@
             this.InstallerDescription = new System.Windows.Forms.RichTextBox();
             this.AddDescriptionBtn = new System.Windows.Forms.Button();
             this.CheckInstaller = new System.Windows.Forms.Button();
+            this.SaveLogsBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // CloseSettingsWindow
@@ -214,11 +215,12 @@
             // 
             // ClearLogsBtn
             // 
+            this.ClearLogsBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ClearLogsBtn.Location = new System.Drawing.Point(713, 128);
             this.ClearLogsBtn.Name = "ClearLogsBtn";
             this.ClearLogsBtn.Size = new System.Drawing.Size(75, 23);
             this.ClearLogsBtn.TabIndex = 23;
-            this.ClearLogsBtn.Text = "Clear Logs";
+            this.ClearLogsBtn.Text = "Clear";
             this.ClearLogsBtn.UseVisualStyleBackColor = true;
             this.ClearLogsBtn.Click += new System.EventHandler(this.ClearLogsBtn_Click);
             // 
@@ -252,12 +254,23 @@
             this.CheckInstaller.UseVisualStyleBackColor = true;
             this.CheckInstaller.Click += new System.EventHandler(this.CheckInstaller_Click);
             // 
+            // SaveLogsBtn
+            // 
+            this.SaveLogsBtn.Location = new System.Drawing.Point(624, 215);
+            this.SaveLogsBtn.Name = "SaveLogsBtn";
+            this.SaveLogsBtn.Size = new System.Drawing.Size(164, 23);
+            this.SaveLogsBtn.TabIndex = 28;
+            this.SaveLogsBtn.Text = "Save Logs";
+            this.SaveLogsBtn.UseVisualStyleBackColor = true;
+            this.SaveLogsBtn.Click += new System.EventHandler(this.SaveLogsBtn_Click);
+            // 
             // SettingsWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(60)))), ((int)(((byte)(80)))));
             this.ClientSize = new System.Drawing.Size(800, 464);
+            this.Controls.Add(this.SaveLogsBtn);
             this.Controls.Add(this.CheckInstaller);
             this.Controls.Add(this.AddDescriptionBtn);
             this.Controls.Add(this.InstallerDescription);
@@ -311,5 +324,6 @@
         private System.Windows.Forms.RichTextBox InstallerDescription;
         private System.Windows.Forms.Button AddDescriptionBtn;
         private System.Windows.Forms.Button CheckInstaller;
+        private System.Windows.Forms.Button SaveLogsBtn;
     }
 }

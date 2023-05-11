@@ -50,19 +50,19 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>BgLIYKKvRBmkCLVi35hQnzbFJ0nlC3E4hwtFkMnITzY=</dsig:DigestValue>
+        <dsig:DigestValue>oofGxqpfXNnfmROgemF6chWpRqZatWVislBECQAkSjI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="QuickToolsSetup.exe" size="1431552">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="QuickToolsSetup.exe" size="1433088">
       <assemblyIdentity name="QuickToolsSetup" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>XrIRamzj8iLD3iVjqXDOmRsHcTBStnpeUwgLeyZsuMQ=</dsig:DigestValue>
+        <dsig:DigestValue>qhXtjUPO+oV+81CKHf9W6MQE0MgG4pcwnQJFouifZx0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

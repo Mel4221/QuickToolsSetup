@@ -4,6 +4,7 @@ C:\Users\William\Desktop\C#\QuickToolsSetup\bin\Debug\QuickToolsSetup.applicatio
 C:\Users\William\Desktop\C#\QuickToolsSetup\bin\Debug\QuickToolsSetup.exe
 C:\Users\William\Desktop\C#\QuickToolsSetup\bin\Debug\QuickToolsSetup.pdb
 C:\Users\William\Desktop\C#\QuickToolsSetup\bin\Debug\QuickTools.dll
+C:\Users\William\Desktop\C#\QuickToolsSetup\bin\Debug\QuickTools.xml
 C:\Users\William\Desktop\C#\QuickToolsSetup\obj\Debug\QuickToolsSetup.csproj.AssemblyReference.cache
 C:\Users\William\Desktop\C#\QuickToolsSetup\obj\Debug\QuickToolsSetup.csproj.SuggestedBindingRedirects.cache
 C:\Users\William\Desktop\C#\QuickToolsSetup\obj\Debug\QuickToolsSetup.QuickToolsSetupForm.resources

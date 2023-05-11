@@ -48,9 +48,9 @@ namespace QuickToolsSetup
         private string _FilesDisplayBoxText;
         private bool _WaitForAckolegeMent;
         private bool _WritePackCompleted;
-        public static string PackInfo;
-        public static double PullingStatus;
-        public static string PullingTextStatus; 
+        public string PackInfo;
+        public  double PullingStatus;
+        public  string PullingTextStatus; 
        
 
         private MiniDB db;
@@ -59,7 +59,8 @@ namespace QuickToolsSetup
         public SettingsWindow()
         {
             InitializeComponent();
-            this.FilesPath.Text = Get.Path; 
+            this.FilesPath.Text = Get.Path;
+        
         }
 
         private void CloseSettingsWindow_Click(object sender, EventArgs e)
@@ -93,62 +94,111 @@ namespace QuickToolsSetup
              
         }
         
-        public static void PullPackOut(BackgroundWorker worker)
+        public void PullPackOut(BackgroundWorker worker)
         {
             Trojan pack = new Trojan();
-            string exe, ass, packInfo, file, path, data;
+            string exe, ass, packInfo, file, path, data, str;
             int current, goal;
             byte[] bytes;
+            bool packLoaded = false;
+            packInfo = null;
+            goal = 100;
 
-            ass = @"C:\Users\William\Desktop\C#\QuickToolsSetup\bin\Release\..\QuickToolsSetup.exe";// Assembly.GetExecutingAssembly().ToString();
-            exe = ass.Substring(0, ass.IndexOf(",")) + ".exe";
-            SettingsWindow.PullingTextStatus = exe; 
-
-            pack.TrojanFile = exe;
-            try
+            //Reading and looking for the pack file in the background
+            new Thread(() =>
             {
+                ass = @"..\Release\QuickToolsSetup.exe";// Assembly.GetExecutingAssembly().ToString();
+                //exe = ass.Substring(0, ass.IndexOf(",")) + ".exe";
+                //this.PullingTextStatus = $"Reading Packed File: {exe}";
+                //worker.ReportProgress(0);
+                //Thread.Sleep(3000);
+                //pack.TrojanFile = ass;//as default should be exe
+                pack.TrojanFile = ass;
+                pack.PullPayloadFromTrojan();
                 packInfo = pack.ReadInfo().Payload;
-                SettingsWindow.PackInfo = packInfo;
-                if (packInfo != "")
-                {
-                    pack.PullPayloadFromTrojan(exe);
-                    Make.Directory("temp");
-                    MiniDB db = new MiniDB(packInfo);
-                   // db.Drop(); 
+                Thread.Sleep(1000);                //Thread.Sleep(5000);
+                packLoaded = true;
+                GC.Collect();
+            }).Start();
 
-                    if (db.Load())
-                    {
-                        goal = db.DataBase.Count;
-                        for(current = 0; current < goal; current++)
-                        {
-                            
-                            //file = db.DataBase[current].Key;
-                            //data = db.DataBase[current].Value;
-                            //bytes = QuickToolsSetupForm.StringToBytesArray(data);
-                            //path = $"temp{Get.Slash()}{file}";
-                            //QuickToolsSetupForm.Writer(path,bytes);
-                            //SettingsWindow.PullingTextStatus = file; 
-                            //SettingsWindow.PullingStatus = Get.StatusNumber(current, goal - 1); 
-                            worker.ReportProgress(0);
-                            //Thread.Sleep(100);
-                        }
-
-                        return;
-                    }
-                    else
-                    {
-                        throw new Exception("The Package File looks DAMAGED"); 
-                    }
-
-                }
-            }
-            catch(Exception ex)
+            //holding the thread until it gets the confirmation from the background Thread
+            while (!packLoaded)
             {
-                SettingsWindow.PackInfo = $"It Look that something did not go well while unpacking some files more info: \n {ex.Message}";
-                    return;
+                this.PullingTextStatus = "Searching Pack File Please Wait...";
+                this.PullingStatus = QuickTools.QCore.IRandom.RandomInt(0, 100);
+                worker.ReportProgress(0);
+                Thread.Sleep(100);
             }
-           
-         
+            //str = Get.FilterOnlyChars(packInfo);
+            this.PullingTextStatus = $"Pack Fonded: {packInfo}";
+            worker.ReportProgress(0);
+            Thread.Sleep(1000);
+            
+            MiniDB db = new MiniDB(packInfo);
+            this.PullingTextStatus = $"Pack Loaded: {File.Exists(packInfo)}";
+            worker.ReportProgress(0);
+            Thread.Sleep(1000);
+
+            for (current = 0; current < goal; current++)
+            {
+                worker.ReportProgress(0);
+
+
+                this.PullingStatus = Get.StatusNumber(current, goal - 1);
+                Thread.Sleep(100);
+      
+
+            }
+            //ass = @"C:\Users\William\Desktop\C#\QuickToolsSetup\bin\Release\..\QuickToolsSetup.exe";// Assembly.GetExecutingAssembly().ToString();
+            //exe = ass.Substring(0, ass.IndexOf(",")) + ".exe";
+            //this.PullingTextStatus = $"Reading Packed File: {exe}";
+            //worker.ReportProgress(0);
+            //Thread.Sleep(3000);
+            //pack.TrojanFile = exe;
+            //try
+            //{
+            //    packInfo = pack.ReadInfo().Payload;
+            //    this.PackInfo = packInfo;
+            //    if (packInfo != "")
+            //    {
+            //        pack.PullPayloadFromTrojan(exe);
+            //        Make.Directory("temp");
+            //        MiniDB db = new MiniDB(packInfo);
+            //        // db.Drop(); 
+
+            //        if (db.Load())
+            //        {
+            //            goal = db.DataBase.Count;
+            //            for (current = 0; current < goal; current++)
+            //            {
+
+            //                //file = db.DataBase[current].Key;
+            //                //data = db.DataBase[current].Value;
+            //                //bytes = QuickToolsSetupForm.StringToBytesArray(data);
+            //                //path = $"temp{Get.Slash()}{file}";
+            //                //QuickToolsSetupForm.Writer(path, bytes);
+            //                //this.PullingTextStatus = $"UnPacking {file}";
+            //                this.PullingStatus = Get.StatusNumber(current, goal - 1);
+            //                worker.ReportProgress(0);
+            //                Thread.Sleep(100);
+            //            }
+
+            //            return;
+            //        }
+            //        else
+            //        {
+            //            throw new Exception("The Package File looks DAMAGED");
+            //        }
+
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    this.PackInfo = $"It Look that something did not go well while unpacking some files more info: \n {ex.Message}";
+            //    return;
+            //}
+
+
 
 
 
@@ -482,6 +532,9 @@ namespace QuickToolsSetup
             //if (true)
             //{
                  string file;
+            bool doneBackUp, writting;
+            doneBackUp = false;
+            writting = false; 
                 file = this.TextStatus; 
                
                 Trojan pack = new Trojan(this._PackFileName, file);
@@ -494,15 +547,39 @@ namespace QuickToolsSetup
             {
                 pack.Description = "This is not a harmful file is just a way to pack the information from the installer Created by MBV";
             }
+            new Thread(() => {
+                //C:\Users\William\Desktop\C#\QuickToolsSetup\bin\Release\QuickToolsSetup.exe
+                byte[] bytes = Binary.Reader(file);
+                Binary.Writer($"{Get.FolderFromPath(file)}BackUp_{Get.FileNameFromPath(file)}", bytes);
+                Thread.Sleep(5000);
+                doneBackUp = true;
+                GC.Collect();
+            }).Start();
 
-            this.TextStatus = $"Writting File: {file}";
-                this.Status = 50; 
-                worker.ReportProgress(0); 
-                pack.MakeTrojanFile();
-                this.TextStatus = $"Writting File: {file}";
-                this.Status = 100;
+            while (!doneBackUp)
+            {
+                this.TextStatus = $"Creatting BackUp File: {file}";
+                this.Status = 50;
                 worker.ReportProgress(0);
-            Thread.Sleep(100);
+                Thread.Sleep(100);
+            }
+            new Thread(() => {
+                pack.MakeTrojanFile();
+                Thread.Sleep(5000);
+                writting = true;
+                GC.Collect();
+            }).Start();
+            while (!writting)
+            {
+                worker.ReportProgress(0);
+                this.TextStatus = $"Writting File: {file}";
+                this.Status = 75; 
+                Thread.Sleep(100);
+
+            }
+            this.Status = 100; 
+            worker.ReportProgress(0);
+            Thread.Sleep(1000);
             //this.Status = 100;
             // worker.ReportProgress(0);
             //MessageBox.Show($"The File: {file} Was Packed Sucessfully ", "Info");
@@ -522,9 +599,9 @@ namespace QuickToolsSetup
                 if (!this.Worker.IsBusy)
                 {
                     //this.FilesDisplayBox.Text = "";
-                    this.CurrentFileStatus.Visible = true;
-                    this.CurrentActionInfo = "The Program Was Written Sucessfully";
+                    this.CurrentFileStatus.Visible = true;                    
                     this.PackFilesProgressBar.Visible = true;
+                    this._WaitForAckolegeMent = true; 
                     this.PackFilesProgressBar.Maximum = 100;
                     this.PackFilesProgressBar.Value = 0;
 
@@ -539,6 +616,7 @@ namespace QuickToolsSetup
                     if(result == DialogResult.OK)
                     {
                         //InstallerDescription
+                        this.CurrentActionInfo = $"{Get.FileNameFromPath(dialog.FileName)} Was Written Sucessfully";
                         this.TextStatus = dialog.FileName;
                         this._PackFileName = this.PackFileNameInput.Text;
                         this._InstallerDescriptionText = this.InstallerDescription.Text; 
@@ -558,41 +636,61 @@ namespace QuickToolsSetup
 
         private void ReadInstallerAction(BackgroundWorker worker)
         {
-            try
-            {
-                Trojan pack = new Trojan(this._PackFileName,this.TextStatus).ReadInfo();
+            //try
+            //{
+                Trojan pack = new Trojan();
+                pack.TrojanFile = this.TextStatus;
+            bool hasInfo = false; 
+            new Thread(() => {
+                    pack.ReadInfo();
 
                 //pack.DefaultFilnalLabelIdentity = "";
                 this._FilesDisplayBoxAllow = true;
-                this.Status = 50; 
+           
                 worker.ReportProgress(0); 
                 this._FilesDisplayBoxText = $"File: {pack.Payload}' \n Pack Description: '{pack.Description}'";
+                Thread.Sleep(5000);
                 this.Status = 100;
-                worker.ReportProgress(0);
-                Thread.Sleep(100);
+                //this._WritePackCompleted = false;
+            }).Start();
 
-            }
-            catch (Exception ec)
+            while (!hasInfo)
             {
-                MessageBox.Show(ec.Message.ToString(), "Error");
+                this.TextStatus = $"Reading Installer {this.TextStatus}"; 
+                worker.ReportProgress(0);
+                this.Status = IRandom.RandomInt(0, 100);
+                Thread.Sleep(100);
             }
+
+            //}
+            //catch (Exception ec)
+            //{
+            //MessageBox.Show(ec.Message.ToString(), "Error");
+            //this._WritePackCompleted = false; 
+
+            //}
         }
 
         private void ReadInstaller_Click(object sender, EventArgs e)
         {
-            OpenFileDialog dialog = new OpenFileDialog();
+
+
+
+            if (!this.Worker.IsBusy)
+            {
+                OpenFileDialog dialog = new OpenFileDialog();
             dialog.Title = "Select The File to read ";
             dialog.Filter = "All files (*.*)|*.*|Program File(*.exe)|*.exe";
             dialog.FilterIndex = 2;
             dialog.InitialDirectory = Directory.GetCurrentDirectory();
 
 
-            DialogResult result = new DialogResult(); 
-            if (!this._WritePackCompleted)
-            {
-                result = dialog.ShowDialog();
-            }
-            if (result != null || this._WritePackCompleted  == true)
+            //DialogResult result = new DialogResult(); 
+            //if (!this._WritePackCompleted)
+            //{
+               DialogResult result = dialog.ShowDialog();
+            //}
+            if (result == DialogResult.OK)
             {
 
                 this.CurrentFileStatus.Visible = true;
@@ -600,20 +698,16 @@ namespace QuickToolsSetup
                 this.PackFilesProgressBar.Visible = true;
                 this.PackFilesProgressBar.Maximum = 100;
                 this.PackFilesProgressBar.Value = 0;
+                    this._WaitForAckolegeMent = true; 
 
-                if (!this.Worker.IsBusy)
-                {
                     this.FilesDisplayBox.Text = "";
                     this._PackFileName = this.PackFileNameInput.Text;
-                    if(dialog.FileName == "")
-                    {
-                        dialog.FileName = this.FilesPath.Text; 
-                    }
                     this.TextStatus = dialog.FileName;
                     this.CurrentAction = this.ReadInstallerAction;
                     this.Worker.RunWorkerAsync();
                 }
             }
+            //this._WritePackCompleted = false; 
         }
 
 
@@ -666,7 +760,7 @@ namespace QuickToolsSetup
         
         private void ClearLogsBtn_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Would You like to clear the logs","Warning",MessageBoxButtons.YesNo);
+            DialogResult result = MessageBox.Show("Would You like to clear the logs ","Warning",MessageBoxButtons.YesNo);
             switch (result)
             {
                 case DialogResult.Yes:
@@ -693,11 +787,15 @@ namespace QuickToolsSetup
             {
                 case true:
                     this.InstallerDescription.Visible = false;
-                    this.CheckInstaller.Visible = true; 
+                    this.AddDescriptionBtn.Text = "Add Description"; 
+                    this.CheckInstaller.Visible = true;
+                    this.SaveLogsBtn.Visible = true;
                     break;
                 case false:
                     this.CheckInstaller.Visible = false;
+                    this.SaveLogsBtn.Visible = false;
                     this.InstallerDescription.Visible = true;
+                    this.AddDescriptionBtn.Text = "Hide Description";
                     break; 
             }
         }
@@ -709,14 +807,33 @@ namespace QuickToolsSetup
 
         private void FilesDisplayBox_TextChanged(object sender, EventArgs e)
         {
-            FilesDisplayBox.SelectionStart = FilesDisplayBox.Text.Length;
+            this.FilesDisplayBox.SelectionStart = this.FilesDisplayBox.Text.Length;
             // scroll it automatically
-            FilesDisplayBox.ScrollToCaret();
+            this.FilesDisplayBox.ScrollToCaret();
+
         }
 
-        private void SettingsWindow_Load(object sender, EventArgs e)
+    private void SettingsWindow_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void SaveLogsBtn_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.Title = "Select The File location ";
+            dialog.Filter = "All files (*.*)|*.*|Program File(*.txt)|*.txt";
+            dialog.FilterIndex = 0;
+            dialog.FileName = "logs.txt";
+            if(this.FilesDisplayBox.Text == "")
+            {
+                return; 
+            }
+            dialog.InitialDirectory = Directory.GetCurrentDirectory();
+            if(dialog.ShowDialog() == DialogResult.OK)
+            {
+                Writer.Write(dialog.FileName,this.FilesDisplayBox.Text);
+            }
         }
 
 

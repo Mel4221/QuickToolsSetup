@@ -159,6 +159,10 @@ namespace QuickToolsSetup
 
         private void QuickToolsSetupForm_Load(object sender, EventArgs e)
         {
+
+
+            //byte[] bytes = Reader("QuickToolsSetup.exe");
+            //MessageBox.Show($"{bytes.Length}"); 
             //string file = "_Pack.xml";
             //string str = file.Substring(file.IndexOf("_")+1,file.Length-1);
             //MessageBox.Show($"{str}");

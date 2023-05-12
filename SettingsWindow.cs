@@ -640,35 +640,54 @@ namespace QuickToolsSetup
             //{
                 Trojan pack = new Trojan();
                 pack.TrojanFile = this.TextStatus;
-            bool hasInfo = false; 
-            new Thread(() => {
-                    pack.ReadInfo();
+                bool hasInfo = false;
+            new Thread(() =>
+            {
 
-                //pack.DefaultFilnalLabelIdentity = "";
-                this._FilesDisplayBoxAllow = true;
-           
-                worker.ReportProgress(0); 
-                this._FilesDisplayBoxText = $"File: {pack.Payload}' \n Pack Description: '{pack.Description}'";
-                Thread.Sleep(5000);
-                this.Status = 100;
-                //this._WritePackCompleted = false;
+                pack.ReadInfo();
+                Thread.Sleep(2000);
+                hasInfo = true; 
             }).Start();
-
             while (!hasInfo)
             {
-                this.TextStatus = $"Reading Installer {this.TextStatus}"; 
+                this.Status = 50; 
                 worker.ReportProgress(0);
-                this.Status = IRandom.RandomInt(0, 100);
-                Thread.Sleep(100);
             }
+         
+            this.Status = 100;
+            this.TextStatus = $"File: {pack.Payload}' \n Pack Description: '{pack.Description}'";
+            this._WaitForAckolegeMent = true;
+            this.DialogMessage = this.TextStatus;
+            worker.ReportProgress(0);
+            
+            //            //pack.DefaultFilnalLabelIdentity = "";
+
+
+            //            worker.ReportProgress(0);
+            //            Thread.Sleep(2000);
+            //            this.Status = 100;
+            //            hasInfo = true; 
+            //            //this._WritePackCompleted = false;
+            //        }).Start();
+
+            //    while (!hasInfo)
+            //    {
+            //        this.TextStatus = $"Reading Installer {this.TextStatus}";
+            //            this.Status = 50;
+            //        worker.ReportProgress(0);
+            //        Thread.Sleep(1000);
+            //    }
+            //     this._FilesDisplayBoxAllow = true;
+            //    this._FilesDisplayBoxText = $"File: {pack.Payload}' \n Pack Description: '{pack.Description}'";
+            //    worker.ReportProgress(0);
 
             //}
-            //catch (Exception ec)
-            //{
-            //MessageBox.Show(ec.Message.ToString(), "Error");
-            //this._WritePackCompleted = false; 
+            //    catch (Exception ec)
+            //    {
+            //    MessageBox.Show(ec.Message.ToString(), "Error");
+            //         //this._WritePackCompleted = false; 
 
-            //}
+            //    }
         }
 
         private void ReadInstaller_Click(object sender, EventArgs e)
